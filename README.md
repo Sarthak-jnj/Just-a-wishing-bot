@@ -8,8 +8,11 @@ to work for longer periods.
 Now, the setup steps -
 
 1 - Download the files and place them in the same folder.
+
 2 - In config.json, edit the Phone number and Imagepath to the recipient's number and file location of your images.
+
 3 - history.json is empty, don't delete it's useful for the code.
+
 4 - copy the "Automaticbot.bat", click win + R and open "shell:startup", paste the bat there.
 
 It should not startup with computer and work. You might need to download the libraries mentioned in Main.py and 'pywin32'.
