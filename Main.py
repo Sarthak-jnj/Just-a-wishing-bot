@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 import pywhatkit as pkit
 import pyautogui
+import pyperclip
 import time
 
 CONFIG_FILE = "config.json"
@@ -27,6 +28,7 @@ else:
         exit()
     else:
         image_path = f'{config.get("Imagepath")}\\{days_so_far}.jpg'
+        pyperclip.copy(image_path)
         caption = config["Messages"].get(str(days_so_far))
         if not os.path.exists(image_path):
             print(f"Image for day {days_so_far} not found at {image_path}")
@@ -47,15 +49,15 @@ else:
 
                 pyautogui.click(x=1070, y=1030)
                 time.sleep(1)
-                pyautogui.click(x=1060, y=750) 
+                pyautogui.click(x=1050, y=700) 
                 time.sleep(1)
-                pyautogui.write(image_path, interval = 0.02)
+                pyautogui.hotkey('ctrl', 'v')
                 time.sleep(2)
                 pyautogui.press('enter')
                 time.sleep(5)
 
                 pyautogui.write(caption, interval = 0.02)
-                time.sleep(1)
+                time.sleep(5)
                 pyautogui.press('enter')
 
                 print(f"Sent image for day {days_so_far} to {config.get('Phone number')}")
