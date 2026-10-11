@@ -20,3 +20,23 @@ It should not startup with computer and work. You might need to download the lib
 **This is only for windows user, linux and MacOS users must make their own automaticbot.bat for their own OS and adjust the Imagepath in config.json**
 
 Feel free to contact me for any problems 😀
+
+
+**New things to mention 🗣️🗣️🗣️**
+
+Fixed an error i encountered to make sure the code doesn't misfire the message into wrong chat due to WhatsApp's chat recovery.
+For the new update, you have two extra steps for setup.
+
+1 - Open WhatsApp web and place your cursor on the paper clip icon (file selection). Alt-Tab to a session of Terminal in background and CTRL+V this - python -c "import pyautogui; print(pyautogui.position())". 
+
+Put these coordinates in line 48 of Main.py
+
+
+2 - Hover over the Photos/videos option in the drop menu and do the same process for line 50 pyautogui command.
+
+
+*Why the changes were made?*
+
+WhatsApp tries to open the last chat automatically upon running, it can interfere with the automation and cause the image to be sent to the wrong recipient unless forced to open a chat. (Yeah I made the automation do manual labour)
+
+WhatsApp has a failsafe to prevent external bots from automating task , using a workaround with mouse clicks was necessary to bypass it.
