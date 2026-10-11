@@ -26,7 +26,7 @@ else:
         print("Campaign already sent today")
         exit()
     else:
-        image_path = f'{config.get("Imagepath")}/image_{days_so_far}.jpg'
+        image_path = f'{config.get("Imagepath")}\\{days_so_far}.jpg'
         caption = config["Messages"].get(str(days_so_far))
         if not os.path.exists(image_path):
             print(f"Image for day {days_so_far} not found at {image_path}")
@@ -35,18 +35,29 @@ else:
         else:
             try:
                 pyautogui.alert(f"Sending image for day {days_so_far} to {config.get('Phone number')}. Please do not use your computer for the next 20 seconds.")
+                pkit.open_web()
+                time.sleep(10)
                 pyautogui.hotkey('ctrl', 'alt', '/')
+                pyautogui.press('backspace')
                 time.sleep(1)
                 pyautogui.write(config.get("Phone number"))
                 time.sleep(2)
                 pyautogui.press('enter')
                 time.sleep(2)
-                pkit.sendwhats_image(
-                    config.get("Phone number"),
-                      image_path,
-                     caption,
-                    wait_time=10,
-                    close_time=5)
+
+                pyautogui.click(x=1070, y=1030)
+                time.sleep(1)
+                pyautogui.click(x=1060, y=750) 
+                time.sleep(1)
+                pyautogui.write(image_path, interval = 0.02)
+                time.sleep(2)
+                pyautogui.press('enter')
+                time.sleep(5)
+
+                pyautogui.write(caption, interval = 0.02)
+                time.sleep(1)
+                pyautogui.press('enter')
+
                 print(f"Sent image for day {days_so_far} to {config.get('Phone number')}")
                 history[today_str] = {"day": days_so_far, "status": "sent"}
                 with open(HISTORY_FILE, "w") as h:
